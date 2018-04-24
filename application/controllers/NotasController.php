@@ -26,7 +26,18 @@ class NotasController extends CI_Controller {
 
     public function all(){
     	$r = $this->nota->getAll();
-    	print_r(json_encode($r));
+
+    	if($r){
+    		$datos["estado"] = 1;
+    		$datos["datos"] = $r;
+    		print json_encode($datos);
+    	}else{
+    		print json_encode(array(
+    			"estado" => 2,
+    			"mensaje" => "Ha ocurrido un error"
+    		));
+    	}
+    	///print_r(json_encode($r));
     }
 	/*public function index()
 	{
